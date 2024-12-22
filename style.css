@@ -1,0 +1,128 @@
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgb(54, 54, 54);
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: none;
+
+}
+
+.container {
+  display: flex;
+  position: relative;
+}
+
+
+#game {
+  display: flex;
+  border: 0.5vh solid orange;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
+.side-txt{
+  font-size: 50px;
+  font-family: 'Arial';
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px #ffffff;
+
+  margin-bottom: 16px;
+}
+
+#ball-window {
+ display: flex;
+ /* border: 0.5vh solid orange; */
+}
+
+
+#guide-btn {
+  
+}
+
+#reset-btn {
+
+}
+
+.side-btn {
+  display: flex;
+  width: 100;
+  height: 50;
+  margin: 20px;
+
+  font-size: 24px;
+  font-family: 'Arial';
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.side-btn:hover{
+  opacity: 0.7;
+}
+
+
+
+.side-content{
+  text-align: center;
+}
+
+.popup{
+  width: 500px;
+  border: 0.3vh solid black;
+  position: absolute;
+  background: white;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup img{
+  width: 100%;
+}
+
+.popup button{
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  font-size: 16px;
+  font-family: 'Arial';
+  font-weight: bold;
+  color: white;
+  background-color: lime;
+  border: none;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popup button:hover{
+  opacity: 0.7;
+}

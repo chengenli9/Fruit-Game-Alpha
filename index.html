@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ball Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="side-content" id="left-content">
+      <div class="side-txt">Score:</div>
+      <div id ="score" class="side-txt">0</div>
+    </div>
+
+    <div class="mid-content">
+      <canvas id="game"></canvas>
+
+    </div>
+   
+    <div class="side-content">
+      <div class="side-txt">Up Next</div>
+      <canvas id="ball-window"></canvas>
+
+      <button id="guide-btn" class="side-btn">How to Play</button>
+      <button id="restart-btn" class="side-btn">Restart</button>
+      
+      <div class="popup" id="popup">
+        <img src="images/guide.png">
+        <button id="close-popup">OK</button>
+      </div>
+
+    </div>
+
+    
+
+  </div>
+  
+  <script src="index.js" defer type="module"></script>
+</body>
+</html>
