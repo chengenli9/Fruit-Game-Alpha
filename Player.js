@@ -8,7 +8,7 @@ export default class Player {
     this.color = color;
 
     this.playerImage = new Image();
-    this.playerImage.src = 'images/face2.png';
+    this.playerImage.src = 'images/smile_processed.webp';
     this.image = this.playerImage;
   }
 
