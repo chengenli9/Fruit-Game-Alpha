@@ -11,27 +11,32 @@ export default class Ball {
     this.centerX = centerX;
     this.centerY = centerY;
     this.radius = radius;
-    this.hasLanded = false;
-    this.crossedLineTime = null;
+
     this.balls = balls;
     this.color = color;
     this.rotationAngle = 0;
 
+    this.hasLanded = false;
+    this.crossedLineTime = null;
+
     this.gravity = 0.2;
     this.friction = 0.98;
 
+    //each ball's velocity vector 
     this.velocity = {
       x: 0,
       y: 5,
     }
 
+    //image for each ball
     this.ballImage = new Image();
-    this.ballImage.src = 'images/smile_processed.webp';
+    this.ballImage.src = 'images/face2.png';
     this.image = this.ballImage;
 
 
   }
 
+  //method to draw the ball
   draw() {
     this.ctx.save();
     this.ctx.translate(this.centerX, this.centerY);
@@ -46,11 +51,12 @@ export default class Ball {
     this.ctx.lineWidth = 2;  
     this.ctx.strokeStyle = "black";
     this.ctx.stroke();
-    this.ctx.drawImage(this.image, -this.radius / 3  , -this.radius /2 , this.radius, this.radius);
+    this.ctx.drawImage(this.image, -this.radius,  -this.radius * 1.2, this.radius * 2, this.radius * 2);
 
     this.ctx.restore();
   }
 
+  //method updates the ball's position and checks for collisions 
   update() {
     //add gravity to the vertical velocity
     this.velocity.y += this.gravity;
@@ -84,7 +90,6 @@ export default class Ball {
 
 
   checkWallCollision() {
-
     //logic for left wall
     if (this.centerX - this.radius <= 0) {
       // Ensure the ball doesn't go past the left wall
@@ -204,16 +209,20 @@ export default class Ball {
     //create the new ball
     const newBall = new Ball(this.ctx, mpX, mpY, nextBall.radius, nextBall.color, this.balls);
 
+    //adds the newBall to the balls array
     this.balls.push(newBall);
 
+    //increase the score based on the type's points
     gameState.score += nextBall.points;
 
     updateScoreDisplay();
 
-    console.log(`score: ${gameState.score}` );
-    console.log(`points: ${nextBall.points}`)
+    // for debugging
+    // console.log(`score: ${gameState.score}` );
+    // console.log(`points: ${nextBall.points}`)
   }
 
+  //checks if the ball has landed and is crossing a vertical point
   hasCrossedLine(borderHeight) {
     return this.hasLanded && this.centerY - this.radius <= borderHeight;
   }

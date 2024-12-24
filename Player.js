@@ -22,7 +22,7 @@ export default class Player {
     this.ctx.strokeStyle = "black";
     this.ctx.stroke();
 
-    this.ctx.drawImage(this.image, this.centerX - this.radius/2  ,this.centerY - this.radius /2 , this.radius, this.radius);
+    this.ctx.drawImage(this.image, this.centerX - this.radius   ,this.centerY - this.radius / 2  , this.radius * 2, this.radius * 2);
     
   }
 
