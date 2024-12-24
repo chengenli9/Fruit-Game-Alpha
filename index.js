@@ -13,14 +13,6 @@ const openBtn = document.getElementById('guide-btn');
 const closeBtn = document.getElementById('close-popup');
 const restartBtn = document.getElementById('restart-btn');
 
-function openPopup() {
-  popupDisplay.classList.add("open-popup");
-}
-
-function closePopup() {
-  popupDisplay.classList.remove("open-popup");
-}
-
 openBtn.addEventListener('click', openPopup);
 closeBtn.addEventListener('click', closePopup);
 restartBtn.addEventListener('click', resetGameState);
@@ -28,16 +20,22 @@ canvas.addEventListener("mousemove", handleMouseMove);
 canvas.addEventListener("click", handleMouseClick);
 
 
-
+//ctx1 dimensions 
 const GAME_WIDTH = 600;
 const GAME_HEIGHT = 850;
+
+//ctx2 dimensions
 const BALL_WINDOW_WIDTH = 200;
 const BALL_WINDOW_HEIGHT = 200;
+
+//position of the red line
 const LINE_HEIGHT = 100;
+
 let ballRadius = 20;
 let ballColor;
-let player;
 
+//player variable 
+let player;
 
 //keep track of game score
 export const gameState = {
@@ -52,7 +50,7 @@ let initPlayerY = ballRadius * 2;
 const ballQueue = new Queue();
 const MAX_QUEUE_SIZE = 10;
 
-let balls = []; //Array of different balls
+const balls = []; //Array of different balls
 
 export const ballType = {
   blueberry: {
@@ -106,6 +104,15 @@ export const ballType = {
 const coolDownTime = 700; //for click delay
 let lastClickTime = 0; //for click delay
 
+
+
+function openPopup() {
+  popupDisplay.classList.add("open-popup");
+}
+
+function closePopup() {
+  popupDisplay.classList.remove("open-popup");
+}
 
 
 function drawCanvas() {
@@ -186,7 +193,6 @@ function createBall() {
 
   return new Ball(ctx1, initPlayerX, initPlayerY, ballRadius, ballColor, balls);
 }
-
 
 //move the player around with cursor
 function handleMouseMove(event) {
@@ -287,6 +293,6 @@ createPlayer();
 drawCanvas();
 animate();
 
-console.log(ballQueue);
+//console.log(ballQueue);
 
 
