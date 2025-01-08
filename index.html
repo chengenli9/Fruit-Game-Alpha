@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ball Game</title>
+  <link rel="icon" href="images/tabIcon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,6 +12,9 @@
     <div class="side-content" id="left-content">
       <div class="side-txt">Score:</div>
       <div id ="score" class="side-txt">0</div>
+
+      <div class="high-score-txt">High Score:</div>
+      <div id="high-score" class="hs-number-txt">0</div>
     </div>
 
     <div class="mid-content">
@@ -28,6 +32,12 @@
       <div class="popup" id="popup">
         <img src="images/guide.png">
         <button id="close-popup">OK</button>
+      </div>
+
+      <div class="popup" id="end-game-popup">
+        <h1>GAME OVER</h1>
+        <h2 id="final-score">Score: 0</h2>
+        <button id="play-again-btn">Play Again</button>
       </div>
 
     </div>

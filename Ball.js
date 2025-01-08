@@ -2,9 +2,21 @@ import { ballType } from "./index.js";
 import { gameState } from "./index.js";
 import { updateScoreDisplay } from "./index.js";
 
+/**
+ * @Class
+ * Ball class used to create each ball with physics
+ * 
+ */
 export default class Ball {
-
-
+  /**
+   * 
+   * @param {Canvas} ctx which canvas to reference
+   * @param {float} centerX x position on ctx
+   * @param {float} centerY y position on ctx
+   * @param {float} radius radius of each ball
+   * @param {int} color color of each ball
+   * @param {Array} balls which array of balls to reference
+   */
   constructor(ctx, centerX, centerY, radius, color, balls) {
     this.ctx = ctx;
     this.canvas = ctx.canvas;
@@ -14,13 +26,13 @@ export default class Ball {
 
     this.balls = balls;
     this.color = color;
-    this.rotationAngle = 0;
+    this.rotationAngle = 0; // used for ball rotation
 
-    this.hasLanded = false;
-    this.crossedLineTime = null;
+    this.hasLanded = false; // check if ball has landed on ground or another ball
+    this.crossedLineTime = null; // checks how long a ball is touching the red line
 
-    this.gravity = 0.2;
-    this.friction = 0.98;
+    this.gravity = 0.2; // for ball drop physics
+    this.friction = 0.98; // used for ball sliding 
 
     //each ball's velocity vector 
     this.velocity = {
@@ -72,7 +84,7 @@ export default class Ball {
     this.checkBallCollision();
   }
 
-
+  // method checks if ball is touching the bottom of the canvas
   checkGroundCollision() {
     if (this.centerY + this.radius >= this.canvas.height) {
       this.centerY = this.canvas.height - this.radius;
@@ -88,7 +100,7 @@ export default class Ball {
     this.centerY += this.velocity.y;
   }
 
-
+  // method checks if ball is touching either walls of the canvas
   checkWallCollision() {
     //logic for left wall
     if (this.centerX - this.radius <= 0) {
@@ -111,12 +123,16 @@ export default class Ball {
     }
   }
 
-  //collision with other balls
-  //source: https://myninja.ai/
-  //
+  /**
+   * @method
+   * collision with other balls
+   * source: https://myninja.ai/
+   */
   checkBallCollision() {
+    // set of unique balls
     const ballsToRemove = new Set(); 
 
+    // interates through each ball on screen
     for (let ball of [...this.balls]) {  
       if (ball !== this) {  
        const dx = this.centerX - ball.centerX;  
@@ -143,8 +159,10 @@ export default class Ball {
               ballsToRemove.add(this);  
               ballsToRemove.add(ball);  
 
-              // Spawn a new ball at the midpoint  
+          
+              // add a delay between each splice
               setTimeout(() => {  
+                // Spawn a new ball at the midpoint  
                   this.addNextBall(mpX, mpY);  
               }, 100);  
             }  
@@ -188,6 +206,9 @@ export default class Ball {
         }  
       }  
     }
+
+
+    // removes the balls from canvas
     for (let ball of ballsToRemove) {  
       const index = this.balls.indexOf(ball);  
       if (index > -1) {  
@@ -196,7 +217,11 @@ export default class Ball {
     }  
   }
 
-  //spawns a new ball in between two balls of the same type
+  /**
+   * draws a new ball in between two balls of the same type
+   * @param {int} mpX 
+   * @param {int} mpY 
+   */
   addNextBall(mpX, mpY) {
     const ballTypes = Object.keys(ballType);
     const currentIndex = ballTypes.findIndex(type => ballType[type].color === this.color);

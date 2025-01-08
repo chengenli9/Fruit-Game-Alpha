@@ -1,5 +1,17 @@
-
+/**
+ * @class
+ * The ball that the player controls to decide where the balls drop
+ * 
+ */
 export default class Player {
+  /**
+   * 
+   * @param {Canvas} ctx 
+   * @param {float} centerX 
+   * @param {float} centerY 
+   * @param {float} radius 
+   * @param {int} color 
+   */
   constructor(ctx, centerX, centerY, radius, color) {
     this.ctx = ctx;
     this.centerX = centerX;
